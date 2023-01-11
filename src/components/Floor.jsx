@@ -7,7 +7,7 @@ function Floor() {
     normalMap,
     roughnessMap,
     metalnessMap,
-    aoMap,
+    // aoMap,
     displacementMap
   ] = useTexture( [
     '/assets/map.png',

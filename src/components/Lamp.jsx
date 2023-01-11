@@ -1,7 +1,7 @@
-import React, { useMemo, useContext, createContext, useRef, useEffect } from 'react';
-import { useGLTF, Merged, Sphere } from '@react-three/drei';
+import { useMemo, useContext, createContext, useRef, useEffect } from 'react';
+import { useGLTF, Merged } from '@react-three/drei';
 import useStore from '../store';
-import { Color, GLTFExporter } from 'three';
+import { Color } from 'three';
 
 const context = createContext();
 export function Instances( { children, ...props } ) {
@@ -55,7 +55,13 @@ export default function Lamp( props ) {
               41.383,
               -0.9225
             ] }>
-            <spotLight ref={ spotRef } color={ lightColor } angle={ Math.PI / 6 } penumbra={ 0.9 } target={ ref.current } intensity={ 10 }
+            <spotLight
+              ref={ spotRef }
+              color={ lightColor }
+              angle={ Math.PI / 6 }
+              penumbra={ 0.9 }
+              target={ ref.current }
+              intensity={ 10 }
             />
             <pointLight ref={ pointRef } color={ lightColor } intensity={ 1 }/>
           </group>
