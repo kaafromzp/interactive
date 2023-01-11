@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import List from './HtmlList';
 import Html3D from './Html3D/Html3D';
-import { MeshBasicMaterial, NoBlending, FrontSide, Raycaster, Vector2 } from 'three';
-import { layersAll, layersRaycast } from '../helpers/layers';
+import { MeshBasicMaterial, NoBlending, FrontSide } from 'three';
+import { layersRaycast } from '../helpers/layers';
 import { useFrame, useThree } from '@react-three/fiber';
 import useStore from '../store';
 
