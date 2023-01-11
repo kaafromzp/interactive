@@ -1,0 +1,28 @@
+@use '../../brandStyle.css' 
+
+$mainColor: var(--mainColor)
+$mainColorRGB: var(--mainColorRGB)
+
+.uiButton
+    padding: 10px
+    width: 100px
+    // margin-left: 18px
+    background: $mainColor
+    border-radius: 18px
+    border: none
+    // color: #fff
+    font-size: 14px
+    font-weight: 500
+    font-family: sans-serif
+    cursor: pointer
+    transition: box-shadow 0.25s
+    box-shadow: 0 0 8px 0 rgba($mainColorRGB, 0.33)
+    vertical-align: middle
+    &:not(.disabled)
+        &:hover 
+            border: solid white 1px
+            box-shadow: 0 0 8px 0 $mainColor
+    &.disabled
+        cursor: not-allowed
+        background: #cccccc
+        color: $mainColor

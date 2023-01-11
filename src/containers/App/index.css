@@ -12,6 +12,12 @@
   height: 100vh;
 }
 
+body {
+  background-color: #101010;
+  background: radial-gradient(circle at bottom center, #292929 0%, #101010 80%);
+  -webkit-font-smoothing: antialiased;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
