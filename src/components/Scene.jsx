@@ -7,7 +7,7 @@ import { TV } from './TV';
 function Scene() {
   return (
     <>
-      <Environment preset='city' />
+      <Environment map={ './assets/map.hdr' } />
       <Floor/>
       {/* <Effects/> */}
       <Suspense fallback={ null }>
