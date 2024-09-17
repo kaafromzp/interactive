@@ -54,7 +54,10 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const AppBar = styled( MuiAppBar, { shouldForwardProp: ( prop ) => prop !== 'open' } )<AppBarProps>( ( { theme } ) => ( {
+const AppBar = styled( MuiAppBar, {
+  shouldForwardProp:
+  ( prop ) => prop !== 'open'
+} )<AppBarProps>( ( { theme } ) => ( {
   transition: theme.transitions.create( ['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
