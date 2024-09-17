@@ -6,9 +6,9 @@ export default function Lights () {
 
   return (
     <div
-      style={ { height: '36px', display: 'flex', zIndex: 2 } }
+      style={ { height: '36px', display: 'flex', zIndex: 2, gap: '10px' } }
     >
-      <label>Lights</label>
+      <label style={ { fontWeight: 'bold' } }>Lights</label>
       <button
         onClick={ () => {
           setLightsEnabled( true );

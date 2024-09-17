@@ -6,9 +6,9 @@ export default function Settings () {
 
   return (
     <div
-      style={ { height: '36px', display: 'flex', zIndex: 2 } }
+      style={ { height: '36px', display: 'flex', zIndex: 2, gap: '10px' } }
     >
-      <label>Colors</label>
+      <label style={ { fontWeight: 'bold' } }>Colors</label>
       <button
         onClick={ () => {
           setMainColor( '#735DA5' );
