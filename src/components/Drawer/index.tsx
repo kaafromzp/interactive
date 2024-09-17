@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -22,11 +22,6 @@ import Lights from '../Lights';
 import Settings from '../Settings';
 import Channels from '../Channels';
 import useStore from '../../store';
-import { createPortal } from 'react-dom';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-import Frame from 'react-frame-component';
-
 
 const drawerWidth = 180;
 
@@ -100,14 +95,11 @@ export default function PersistentDrawerLeft() {
     setOpen( true );
   };
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = useCallback( () => {
     setOpen( false );
     setActiveTab( '' );
-  };
+  }, [setOpen, setActiveTab] );
 
-  const [contentRef, setContentRef] = useState<HTMLIFrameElement | null>( null );
-
-  const mountNode = contentRef?.contentWindow?.document?.body;
   const children = useMemo( () => <Box sx={ { display: 'flex' } }>
     <CssBaseline />
     <AppBar position='fixed' open={ open }>
@@ -180,24 +172,9 @@ export default function PersistentDrawerLeft() {
     theme.direction
   ] );
 
-  const cache = createCache( {
-    key: 'css',
-    container: contentRef?.contentWindow?.document?.head,
-    prepend: true
-  } );
-
   return (
     <div style={ { width: '100%', height: '100%', clipPath: 'inset(0 0 0 0)' } }>
       {children}
     </div>
   );
-
-  // return (
-  //   <CacheProvider value={ cache }>
-  //     {/* <iframe ref = { setContentRef } style={ { width: '100%', height: '100%', display: 'fixed' } } title='test'> */}
-  //     {mountNode && createPortal( children, mountNode )}
-  //     {/* {children} */}
-  //     {/* </iframe> */}
-  //   </CacheProvider>
-  // );
 }

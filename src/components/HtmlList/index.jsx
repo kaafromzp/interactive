@@ -1,19 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './Html.module.sass';
-import classnames from 'classnames';
 import useStore from '../../store';
 import { hexToRgb } from '../../helpers/color';
 import PersistentDrawerLeft from '../Drawer';
 
 function List() {
-  const activeTab = useStore( ( state ) => state.activeTab );
   const mainColor = useStore( ( state ) => state.mainColor );
   const channel = useStore( ( state ) => state.channel );
-
-  const setActiveTab = useStore( ( state ) => state.setActiveTab );
-  const setTVChannel = useStore( ( state ) => state.setTVChannel );
-  const setMainColor = useStore( ( state ) => state.setMainColor );
-  const setLightsEnabled = useStore( ( state ) => state.setLightsEnabled );
 
   const ref = useRef( null );
   console.log( 'List', channel );
