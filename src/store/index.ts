@@ -5,7 +5,7 @@ const useStore = create( ( set ) => ( {
   enabled: true,
   channel: 1,
   mainColor: '#714DF3',
-  activeTab: 'Channels',
+  activeTab: '',
   lightsEnabled: true,
   hoveredItem: false,
   // SETTERS

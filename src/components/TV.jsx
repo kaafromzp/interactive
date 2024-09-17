@@ -2,10 +2,13 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import List from './HtmlList';
 import Html3D from './Html3D/Html3D';
-import { MeshBasicMaterial, NoBlending, FrontSide } from 'three';
+import { MeshBasicMaterial, NoBlending, FrontSide, Color } from 'three';
 import { layersRaycast } from '../helpers/layers';
 import { useFrame, useThree } from '@react-three/fiber';
 import useStore from '../store';
+let time = 0;
+const colorRed = new Color( 1, 0, 0 );
+const colorWhite = new Color( 1, 1, 1 );
 
 export function TV() {
   const enabled = useStore( ( state ) => state.enabled );
@@ -14,6 +17,9 @@ export function TV() {
   const setHoveredItem = useStore( ( state ) => state.setHoveredItem );
 
   const { nodes, materials } = useGLTF( '/assets/LG.glb' );
+
+  materials.tv_logo_white.emissive = colorWhite;
+  materials.tv_logo_red.emissive = colorRed;
 
   const holeMaterial = useMemo( () => new MeshBasicMaterial( {
     color: 'black',
@@ -27,27 +33,15 @@ export function TV() {
   window.scene = scene;
   window.camera = camera;
 
-  // const onPDown = useCallback( ( e ) => {
-  //   const raycaster = new Raycaster();
-  //   raycaster.layers = layersAll;
-  //   raycaster.setFromCamera( new Vector2(), camera );
-  //   const intersections = raycaster.intersectObject( scene, true );
-  //   console.log( intersections );
-  // }, [camera, scene] );
-
-  // useEffect( () => {
-  //   window.addEventListener( 'pointerdown', onPDown );
-
-  //   return () => {
-  //     window.removeEventListener( 'pointerdown', onPDown );
-  //   };
-  // }, [onPDown] );
-
-  useFrame( () => {
+  useFrame( ( state, delta ) => {
     const index = camera.position.x >= 0 ? 1 : -1;
     if ( ( index ) !== zIndex ) {
       setIndex( index );
     }
+
+    time += delta;
+    materials.tv_logo_white.emissiveIntensity = 0.2 * Math.sin( 0.5 * time );
+    materials.tv_logo_red.emissiveIntensity = 0.2 * Math.sin( 0.5 * time );
   } );
 
   const [zIndex, setIndex] = useState( 1 );
@@ -125,8 +119,7 @@ export function TV() {
           0
         ] }
         component={ List }
-      />
-      }
+      />}
     </group>
   );
 }

@@ -3,6 +3,7 @@ import styles from './Html.module.sass';
 import classnames from 'classnames';
 import useStore from '../../store';
 import { hexToRgb } from '../../helpers/color';
+import PersistentDrawerLeft from '../Drawer';
 
 function List() {
   const activeTab = useStore( ( state ) => state.activeTab );
@@ -25,18 +26,18 @@ function List() {
 
   return (
     <div ref={ ref } style={ { width: '100%', height: '100%' } }>
-      <div style={ { position: 'absolute', width: '100%', height: '100%', zIndex: 1 } }>
+      <div style={ { position: 'absolute', width: '100%', height: '100%' } }>
         <video
           key ={ `/assets/${ channel }.mp4` }
           muted
           autoPlay
           loop
-          style={ { width: '100%', height: '100%', zIndex: 1, cursor: 'grab' } }
+          style={ { width: '100%', height: '100%', cursor: 'grab' } }
         >
           <source src={ `/assets/${ channel }.mp4` } type='video/mp4'/>
         </video>
       </div>
-      <div
+      {/* <div
         style={ {
           width: '100%',
           height: '100%',
@@ -69,8 +70,9 @@ function List() {
         {
           activeTab === 'Channels' && (
             <div
-              style={ { height: '36px', display: 'flex', zIndex: 2 } }
+              style={ { height: '36px', display: 'flex', zIndex: 2, gap: '10px' } }
             >
+              <label style={ { fontWeight: 'bold' } }>Channels</label>
               {[
                 1,
                 2,
@@ -99,35 +101,35 @@ function List() {
               <label>Colors</label>
               <button
                 onClick={ () => {
-                  setMainColor( '#620290' );
+                  setMainColor( '#735DA5' );
                 } }
                 className={ styles.uiButton }
               >1
               </button>
               <button
                 onClick={ () => {
-                  setMainColor( '#714DF3' );
+                  setMainColor( '#20948B' );
                 } }
                 className={ styles.uiButton }
               >2
               </button>
               <button
                 onClick={ () => {
-                  setMainColor( '#974D05' );
+                  setMainColor( '#7A2048' );
                 } }
                 className={ styles.uiButton }
               >3
               </button>
               <button
                 onClick={ () => {
-                  setMainColor( '#25A017' );
+                  setMainColor( '#A1BE95' );
                 } }
                 className={ styles.uiButton }
               >4
               </button>
               <button
                 onClick={ () => {
-                  setMainColor( '#757211' );
+                  setMainColor( '#F98866' );
                 } }
                 className={ styles.uiButton }
               >5
@@ -165,7 +167,8 @@ function List() {
             </div>
           )
         }
-      </div>
+      </div> */}
+      <PersistentDrawerLeft/>
     </div>
   );
 }
